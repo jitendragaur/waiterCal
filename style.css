@@ -1,0 +1,50 @@
+.container{
+    border:0px solid #CCC;
+    width: 50%;
+    margin-top: 2%;
+}
+.header{
+    overflow: auto;
+}
+.logo-image, .logo-text{
+    border:1px solid #000;
+    text-align: center;
+    padding:10px;
+    min-height: 125px;
+}
+.logo-image img{
+    width: 100px;
+}
+.logo-text img{
+    width: 170px;
+}
+.logo-text h1{
+    margin-top:5px;
+}
+.madlibs-input, .madlibs-result{
+    border:1px solid #000;
+    padding:20px;
+    min-height:250px;
+    padding-left:30px;
+}
+.madlibs-input{
+
+}
+.madlibs-result{
+
+    padding-left:50px;
+    padding-right:50px
+}
+.madlibs-form{
+    margin-bottom:10px
+}
+.madlibs-result p{
+    font-size: large;
+}
+span.blank_text{
+    font-weight: 500;
+    border-bottom: 1px solid #000;
+    padding-bottom: 3px;
+    min-width: 80px;
+    display: inline-block;
+}
