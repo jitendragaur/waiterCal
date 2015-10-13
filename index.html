@@ -7,8 +7,8 @@
     <title>ngMadLibs</title>
 </head>
 
-<body ng-app="">
-<div class="container" ng-init="male_name=''">
+<body ng-app="myApp">
+<div class="container">
     <div class="header row">
         <div class="logo-image col-md-2"><img src="images/logo-image.png" alt=""/></div>
         <div class="logo-text col-md-10">
@@ -16,51 +16,61 @@
             <div><h1>Automate This!</h1></div>
         </div>
     </div>
-    <div class="row madlibs-input">
-        <h3>Provide the following words:</h3>
-        <div class="row madlibs-form">
-            <div class="col-md-4">
-                <input type="text" class="form-control" placeholder="Male Name" ng-model="male_name">
-            </div>
-            <div class="col-md-4">
-                <input type="text" class="form-control" placeholder="Dirty Task" ng-model="dirty_task">
-            </div>
-            <div class="col-md-4">
-                <input type="text" class="form-control" placeholder="Obnoxiuous Celbertity" ng-model="obnoxiuous_celbertity">
-            </div>
-        </div>
-        <div class="row madlibs-form">
-            <div class="col-md-4">
-                <input type="text" class="form-control" placeholder="Job Title" ng-model="job_title">
-            </div>
-            <div class="col-md-4">
-                <input type="text" class="form-control" placeholder="Celebrity" ng-model="celebrity">
-            </div>
-            <div class="col-md-4">
-                <input type="text" class="form-control" placeholder="Huge Number" ng-model="huge_number">
+    <div ng-controller="MyCtrl">
+        <div class="row madlibs-input">
+            <h3>Provide the following words:</h3>
+            <p>
+                Choose your gender:
+                <select name="" id="" ng-model="gender" class="input">
+                    <option value="he">Male</option>
+                    <option value="she">Female</option>
+                </select>
+            </p>
 
+            <div class="row madlibs-form">
+                <div class="col-md-4">
+                    <input type="text" class="form-control" placeholder="Male Name" ng-model="male_name">
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" placeholder="Dirty Task" ng-model="dirty_task">
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" placeholder="Obnoxiuous Celbertity" ng-model="obnoxiuous_celbertity">
+                </div>
+            </div>
+            <div class="row madlibs-form">
+                <div class="col-md-4">
+                    <input type="text" class="form-control" placeholder="Job Title" ng-model="job_title">
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" placeholder="Celebrity" ng-model="celebrity">
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" placeholder="Huge Number" ng-model="huge_number">
+
+                </div>
+            </div>
+            <div class="row madlibs-form">
+                <div class="col-md-4">
+                    <input type="text" class="form-control" placeholder="Tedious Task" ng-model="tedious_task">
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" placeholder="Useless Skill" ng-model="useless_skill">
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" placeholder="adjective" ng-model="adjective">
+                </div>
             </div>
         </div>
-        <div class="row madlibs-form">
-            <div class="col-md-4">
-                <input type="text" class="form-control" placeholder="Tedious Task" ng-model="tedious_task">
-            </div>
-            <div class="col-md-4">
-                <input type="text" class="form-control" placeholder="Useless Skill" ng-model="useless_skill">
-            </div>
-            <div class="col-md-4">
-                <input type="text" class="form-control" placeholder="adjective" ng-model="adjective">
-            </div>
+        <div class="row madlibs-result">
+            <p>
+                <span class="blank_text">&nbsp;{{male_name}}</span> was a <span class="blank_text">&nbsp;{{job_title}}</span> who loved technology. Although {{gender}} loved parts of {{gender == 'he' ? 'his': 'her'}} job, {{gender}} absolutely hated  <span class="blank_text">&nbsp;{{tedious_task}}</span> and <span class="blank_text">&nbsp;{{dirty_task}}</span>. So, <span class="blank_text">&nbsp;{{male_name}}</span> met with {{gender == 'he' ? 'his': 'her'}}</span> life mentor <span class="blank_text">&nbsp;{{celebrity}}</span> who told {{gender == 'he' ? 'him': 'her'}} to learn how to <span class="blank_text">&nbsp;{{useless_skill}}</span> with Thinkful. Thinkful didn't offer a course on <span class="blank_text">&nbsp;{{useless_skill}}</span> so {{gender}} studied programming instead.
+            </p>
+            <p>&nbsp;</p>
+            <p>
+                What a great decision! With {{gender == 'he' ? 'his': 'her'}} new skills, <span class="blank_text">&nbsp;{{male_name}}</span> built a(n) <span class="blank_text">&nbsp;{{adjective}}</span> robot named <span class="blank_text">&nbsp;{{obnoxiuous_celbertity}}</span> that not only loved <span class="blank_text">&nbsp;{{dirty_task}}</span> but did it <span class="blank_text">&nbsp;{{huge_number}}</span> faster.
+            </p>
         </div>
-    </div>
-    <div class="row madlibs-result">
-        <p>
-            <span class="blank_text">&nbsp;{{male_name}}</span> was a <span class="blank_text">&nbsp;{{job_title}}</span> who loved technology. Although she loved parts of her job, she absolutely hated  <span class="blank_text">&nbsp;{{tedious_task}}</span> and <span class="blank_text">&nbsp;{{dirty_task}}</span>. So, <span class="blank_text">&nbsp;{{male_name}}</span> met with her life mentor <span class="blank_text">&nbsp;{{celebrity}}</span> who told her to learn how to <span class="blank_text">&nbsp;{{useless_skill}}</span> with Thinkful. Thinkful didn't offer a course on <span class="blank_text">&nbsp;{{useless_skill}}</span> so she studied programming instead.
-        </p>
-        <p>&nbsp;</p>
-        <p>
-            What a great decision! With her new skills, <span class="blank_text">&nbsp;{{male_name}}</span> built a(n) <span class="blank_text">&nbsp;{{adjective}}</span> robot named <span class="blank_text">&nbsp;{{obnoxiuous_celbertity}}</span> that not only loved <span class="blank_text">&nbsp;{{dirty_task}}</span> but did it <span class="blank_text">&nbsp;{{huge_number}}</span> faster.
-        </p>
     </div>
 </div>
 
