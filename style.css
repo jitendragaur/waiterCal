@@ -48,3 +48,12 @@ span.blank_text{
     min-width: 80px;
     display: inline-block;
 }
+
+input.error, select.error {
+    border-color: red !important;
+    outline-color: red !important;
+}
+input.success {
+    border-color: green !important;
+    outline-color: green !important;
+}

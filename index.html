@@ -13,63 +13,126 @@
         <div class="logo-image col-md-2"><img src="images/logo-image.png" alt=""/></div>
         <div class="logo-text col-md-10">
             <img src="images/logo-text.png" alt=""/>
+
             <div><h1>Automate This!</h1></div>
         </div>
     </div>
     <div ng-controller="MyCtrl">
-        <div class="row madlibs-input">
+        <div class="row madlibs-input" ng-show="showForm">
             <h3>Provide the following words:</h3>
-            <p>
-                Choose your gender:
-                <select name="" id="" ng-model="gender" class="input">
-                    <option value="he">Male</option>
-                    <option value="she">Female</option>
-                </select>
-            </p>
-
-            <div class="row madlibs-form">
-                <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="Male Name" ng-model="male_name">
-                </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="Dirty Task" ng-model="dirty_task">
-                </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="Obnoxiuous Celbertity" ng-model="obnoxiuous_celbertity">
-                </div>
-            </div>
-            <div class="row madlibs-form">
-                <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="Job Title" ng-model="job_title">
-                </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="Celebrity" ng-model="celebrity">
-                </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="Huge Number" ng-model="huge_number">
+            <form name="myFrm" ng-submit="myFrm.$valid && submit()" novalidate>
+                <div class="alert alert-danger" ng-show="myFrm.$invalid && (!myFrm.$pristine || myFrm.$submitted)">
+                    Please correct all errors.
+                    <span ng-if="myFrm.huge_number.$error.number">
+                        <br/>
+                        Please provide valid Huge Number
+                    </span>
 
                 </div>
-            </div>
-            <div class="row madlibs-form">
-                <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="Tedious Task" ng-model="tedious_task">
+                <p>
+                    Choose your gender:
+                    <select name="gender" ng-model="data.gender"
+                            ng-options="value for (key, value) in {'he': 'Male', 'she': 'Female'} track by key"
+                            class="input" required
+                            ng-class="{error:myFrm.gender.$invalid && (!myFrm.$pristine || myFrm.$submitted)}">
+                        <option value="">Select Gender</option>
+                    </select>
+                </p>
+
+                <div class="row madlibs-form">
+                    <div class="col-md-4">
+                        <input type="text" name="male_name" class="form-control" placeholder="Male Name"
+                               ng-model="data.male_name"
+                               required
+                               ng-class="{error:myFrm.male_name.$invalid && (!myFrm.$pristine || myFrm.$submitted)}">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="dirty_task" class="form-control" placeholder="Dirty Task"
+                               ng-model="data.dirty_task"
+                               required
+                               ng-class="{error:myFrm.dirty_task.$invalid && (!myFrm.$pristine || myFrm.$submitted)}">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="obnoxiuous_celbertity" class="form-control"
+                               placeholder="Obnoxiuous Celbertity" ng-model="data.obnoxiuous_celbertity"
+                               required
+                               ng-class="{error:myFrm.obnoxiuous_celbertity.$invalid && (!myFrm.$pristine || myFrm.$submitted)}">
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="Useless Skill" ng-model="useless_skill">
+                <div class="row madlibs-form">
+                    <div class="col-md-4">
+                        <input type="text" name="job_title" class="form-control" placeholder="Job Title"
+                               ng-model="data.job_title"
+                               required
+                               ng-class="{error:myFrm.job_title.$invalid && (!myFrm.$pristine || myFrm.$submitted)}">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="celebrity" class="form-control" placeholder="Celebrity"
+                               ng-model="data.celebrity"
+                               required
+                               ng-class="{error:myFrm.celebrity.$invalid && (!myFrm.$pristine || myFrm.$submitted)}">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="number" name="huge_number" class="form-control" placeholder="Huge Number"
+                               ng-model="data.huge_number" required
+                               ng-class="{error:myFrm.huge_number.$invalid && (!myFrm.$pristine || myFrm.$submitted)}">
+
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="adjective" ng-model="adjective">
+                <div class="row madlibs-form">
+                    <div class="col-md-4">
+                        <input type="text" name="tedious_task" class="form-control" placeholder="Tedious Task"
+                               ng-model="data.tedious_task"
+                               required
+                               ng-class="{error:myFrm.tedious_task.$invalid && (!myFrm.$pristine || myFrm.$submitted)}">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="useless_skill" class="form-control" placeholder="Useless Skill"
+                               ng-model="data.useless_skill"
+                               required
+                               ng-class="{error:myFrm.useless_skill.$invalid && (!myFrm.$pristine || myFrm.$submitted)}">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="adjective" class="form-control" placeholder="adjective"
+                               ng-model="data.adjective"
+                               required
+                               ng-class="{error:myFrm.adjective.$invalid && (!myFrm.$pristine || myFrm.$submitted)}">
+                    </div>
                 </div>
-            </div>
+                <div class="row madlibs-form">
+                    <div class="col-md-12 ">
+                        <button class="btn btn-primary btn pull-right"
+                                ng-class="{'btn-danger':myFrm.$invalid && (!myFrm.$pristine || myFrm.$submitted),
+                                'btn-success':myFrm.$valid}">
+                            Generate My Mad Lib</button>
+                    </div>
+                </div>
+            </form>
+
         </div>
-        <div class="row madlibs-result">
+        <div class="row madlibs-result" ng-if="showResult">
             <p>
-                <span class="blank_text">&nbsp;{{male_name}}</span> was a <span class="blank_text">&nbsp;{{job_title}}</span> who loved technology. Although {{gender}} loved parts of {{gender == 'he' ? 'his': 'her'}} job, {{gender}} absolutely hated  <span class="blank_text">&nbsp;{{tedious_task}}</span> and <span class="blank_text">&nbsp;{{dirty_task}}</span>. So, <span class="blank_text">&nbsp;{{male_name}}</span> met with {{gender == 'he' ? 'his': 'her'}}</span> life mentor <span class="blank_text">&nbsp;{{celebrity}}</span> who told {{gender == 'he' ? 'him': 'her'}} to learn how to <span class="blank_text">&nbsp;{{useless_skill}}</span> with Thinkful. Thinkful didn't offer a course on <span class="blank_text">&nbsp;{{useless_skill}}</span> so {{gender}} studied programming instead.
+                <span class="blank_text">&nbsp;{{data.male_name}}</span> was a <span
+                    class="blank_text">&nbsp;{{data.job_title}}</span> who loved technology. Although {{data.gender}} loved parts
+                of {{data.gender == 'he' ? 'his': 'her'}} job, {{data.gender}} absolutely hated <span class="blank_text">&nbsp;{{data.tedious_task}}</span>
+                and <span class="blank_text">&nbsp;{{data.dirty_task}}</span>. So, <span class="blank_text">&nbsp;{{data.male_name}}</span>
+                met with {{data.gender == 'he' ? 'his': 'her'}}</span> life mentor <span class="blank_text">&nbsp;{{data.celebrity}}</span>
+                who told {{data.gender == 'he' ? 'him': 'her'}} to learn how to <span class="blank_text">&nbsp;{{data.useless_skill}}</span>
+                with Thinkful. Thinkful didn't offer a course on <span class="blank_text">&nbsp;{{data.useless_skill}}</span>
+                so {{data.gender}} studied programming instead.
             </p>
+
             <p>&nbsp;</p>
+
             <p>
-                What a great decision! With {{gender == 'he' ? 'his': 'her'}} new skills, <span class="blank_text">&nbsp;{{male_name}}</span> built a(n) <span class="blank_text">&nbsp;{{adjective}}</span> robot named <span class="blank_text">&nbsp;{{obnoxiuous_celbertity}}</span> that not only loved <span class="blank_text">&nbsp;{{dirty_task}}</span> but did it <span class="blank_text">&nbsp;{{huge_number}}</span> faster.
+                What a great decision! With {{data.gender == 'he' ? 'his': 'her'}} new skills, <span class="blank_text">&nbsp;{{data.male_name}}</span>
+                built a(n) <span class="blank_text">&nbsp;{{data.adjective}}</span> robot named <span class="blank_text">&nbsp;{{data.obnoxiuous_celbertity}}</span>
+                that not only loved <span class="blank_text">&nbsp;{{data.dirty_task}}</span> but did it <span
+                    class="blank_text">&nbsp;{{data.huge_number}}</span> faster.
             </p>
+            <div class="col-md-12 ">
+                <button class="btn btn-primary btn pull-right" ng-click="startOver()">Start Over</button>
+            </div>
         </div>
     </div>
 </div>
