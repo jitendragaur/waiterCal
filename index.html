@@ -32,7 +32,7 @@
                 <p>
                     Choose your gender:
                     <select name="gender" ng-model="data.gender"
-                            ng-options="value for (key, value) in {'he': 'Male', 'she': 'Female'} track by key"
+                            ng-options="key as value for (key, value) in {'he': 'Male', 'she': 'Female'} track by key"
                             class="input" required
                             ng-class="{error:myFrm.gender.$invalid && (!myFrm.$pristine || myFrm.$submitted)}">
                         <option value="">Select Gender</option>
@@ -41,7 +41,7 @@
 
                 <div class="row madlibs-form">
                     <div class="col-md-4">
-                        <input type="text" name="male_name" class="form-control" placeholder="Male Name"
+                        <input type="text" name="male_name" class="form-control" placeholder="Name"
                                ng-model="data.male_name"
                                required
                                ng-class="{error:myFrm.male_name.$invalid && (!myFrm.$pristine || myFrm.$submitted)}">
