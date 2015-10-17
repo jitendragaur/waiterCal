@@ -37,7 +37,7 @@ angular.module('app', [])
         vm.resetForm = function () {
             vm.meal = {};
             vm.theForm.$setPristine();
-        }
+        };
 
         //reset whole app
         vm.resetApp = function () {
@@ -45,4 +45,4 @@ angular.module('app', [])
             vm.theForm.$setPristine();
             vm.mealInit();
         }
-    })
+    });
