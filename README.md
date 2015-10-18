@@ -1,1 +1,1 @@
-ngMadLibs app
+Simple Waiter Tip Calulator Angular App
