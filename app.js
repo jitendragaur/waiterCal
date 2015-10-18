@@ -28,7 +28,7 @@ angular.module('app', [])
             //mealCount = mealCount++
             vm.meal_count = vm.meal_count + 1;
             //avgTip = totalTip/mealCount
-            vm.meal_tipAvg = vm.meal_tipTotal / vm.meal_tipTotal;
+            vm.meal_tipAvg = vm.meal_tipTotal / vm.meal_count;
 
             //reset the form
             vm.resetForm();
