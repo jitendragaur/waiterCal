@@ -1,4 +1,4 @@
-angular.module('app', ['ngRoute'])
+angular.module('app', ['ngRoute', 'ngAnimate'])
     .value('mealDetail', {
         subtotal: 0,
         tip: 0,
