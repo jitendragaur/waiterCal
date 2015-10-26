@@ -38,10 +38,15 @@ table td hr{
     margin: 0px;
 }
 div.detail{
-    min-height: 352px;
+    min-height: 310px;
 }
 
 div.form-btn{
     position: relative;
     bottom:-50px;
+}
+.panel{
+    max-width: 450px;
+    margin: 0 auto;
+    margin-bottom:20px;
 }

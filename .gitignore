@@ -1,20 +1,6 @@
 .idea/
 node_modules/
-
-.idea/.name
-
+bower_components/
 gulpfile.js
-
 package.json
 
-.idea/.name
-
-.idea/.name
-
-.idea/misc.xml
-
-.idea/modules.xml
-
-.idea/ngMadLibs.iml
-
-.idea/vcs.xml

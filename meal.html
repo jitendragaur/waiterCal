@@ -1,0 +1,86 @@
+ <div class="panel panel-default detail">
+        <div class="panel-heading">
+            <h3 class="panel-title">Enter the Meal Details</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-inline" name="vm.theForm"
+                  ng-submit="vm.theForm.$valid && vm.submitForm()" novalidate>
+                <table align="center" class="detail">
+                    <tr>
+                        <td class="text-right"><label class="control-label">Base Meal Price: </label></td>
+                        <td>
+                            <div class="input-group"
+                                 ng-class="{'has-success':(vm.theForm.price.$valid && !vm.theForm.$pristine),
+                                            'has-error':(vm.theForm.price.$invalid && !vm.theForm.$pristine) || (vm.theForm.$submitted && vm.theForm.price.$invalid)}">
+                                <span class="input-group-addon">$&nbsp;</span>
+                                <input type="number" name="price" class="form-control col-xs-3"
+                                       ng-model="vm.meal.price" required min="1">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right"><label class="control-label">Tax Rate: </label></td>
+                        <td class="text-left">
+                            <div class="input-group"
+                                 ng-class="{'has-success':(vm.theForm.tax.$valid && !vm.theForm.$pristine),
+                                            'has-error':(vm.theForm.tax.$invalid && !vm.theForm.$pristine) || (vm.theForm.$submitted && vm.theForm.tax.$invalid)}">
+                                <span class="input-group-addon">%</span>
+                                <input type="number" name="tax" class="form-control col-xs-2 small"
+                                       ng-model="vm.meal.tax" required>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right"><label class="control-label">Tip Percentage: </label></td>
+                        <td class="text-left">
+                            <div class="input-group"
+                                 ng-class="{'has-success':(vm.theForm.tip.$valid && !vm.theForm.$pristine),
+                                            'has-error':(vm.theForm.tip.$invalid && !vm.theForm.$pristine) || (vm.theForm.$submitted && vm.theForm.tip.$invalid)}">
+                                <span class="input-group-addon">%</span>
+                                <input type="number" name="tip" class="form-control col-xs-2 small"
+                                       ng-model="vm.meal.tip" required>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="form-btn">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" ng-click="vm.resetForm()" class="btn btn-default">Cancel</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Customer Charges</h3>
+        </div>
+        <div class="panel-body">
+            <table align="center">
+                <tr>
+                    <td class="text-right">Subtotal:</td>
+                    <td class="text-left">
+                        <label class="control-label">{{vm.meal_subtotal | currency}}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right">Tip:</td>
+                    <td class="text-left">
+                        <label class="control-label">{{vm.meal_tip | currency}}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <hr/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right">Total:</td>
+                    <td class="text-left">
+                        <label class="control-label">{{vm.meal_total | currency}}</label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+

@@ -1,0 +1,28 @@
+{
+  "name": "waiter-caluclator",
+  "description": "Waiter Calculator",
+  "main": "app.js",
+  "authors": [
+    "Jitendra Gaur"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Waiter",
+    "Calulator",
+    "Hotel"
+  ],
+  "homepage": "https://github.com/jitendragaur/waiterCal",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "install": "~1.0.4",
+    "angular": "~1.4.7",
+    "angular-route": "~1.4.7"
+  }
+}

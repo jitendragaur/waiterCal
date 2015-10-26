@@ -1,48 +1,95 @@
-angular.module('app', [])
-    .controller('mealController', function () {
+angular.module('app', ['ngRoute'])
+    .value('mealDetail', {
+        subtotal: 0,
+        tip: 0,
+        total: 0,
+        tipTotal: 0,
+        count: 0,
+        tipAvg: 0
+    })
+    .config(['$routeProvider', function($routeProvider) {
+        $routeProvider.when('/', {
+                templateUrl: 'home.html',
+                controller: 'HomeController as vm'
+            })
+            .when('/meal/new', {
+                templateUrl: 'meal.html',
+                controller: 'MealController as vm'
+            })
+            .when('/earnings', {
+                templateUrl: 'earning.html',
+                controller: 'EarningController as vm'
+            })
+            .otherwise('/')
+    }])
+    .controller('HomeController', ['$rootScope', function($rootScope) {
+        $rootScope.nav = 'home'; //set active class on menu
+    }])
+    .controller('MealController', ['$rootScope', 'mealDetail', function($rootScope, mealDetail) {
         vm = this;
         vm.meal = {};
 
-        vm.mealInit = function () {
-            vm.meal_subtotal = 0,
-                vm.meal_tip = 0;
-            vm.meal_total = 0;
+        $rootScope.nav = 'meal'; //set active class on menu
 
-            vm.meal_tipTotal = 0,
-                vm.meal_count = 0,
-                vm.meal_tipAvg = 0;
+        updateView();
+
+        function updateView() {
+            vm.meal_subtotal = mealDetail.subtotal; //assing value in view
+            vm.meal_tip = mealDetail.tip; //assing value in view
+            vm.meal_total = mealDetail.total; //assing value in view
         };
 
-        vm.mealInit();
-
-        vm.submitForm = function () {
+        vm.submitForm = function() {
             //subTotal = (basemeal*tax/100)+basemeal
-            vm.meal_subtotal = (vm.meal.price * vm.meal.tax / 100) + vm.meal.price;
+            mealDetail.subtotal = (vm.meal.price * vm.meal.tax / 100) + vm.meal.price;
             //tip = basemeal*tip/100
-            vm.meal_tip = vm.meal.price * vm.meal.tip / 100;
+            mealDetail.tip = vm.meal.price * vm.meal.tip / 100;
             //total = subTotal + tip
-            vm.meal_total = vm.meal_subtotal + vm.meal_tip;
+            mealDetail.total = mealDetail.subtotal + mealDetail.tip;
+
 
             //tipTotal = mealTip + totalTip
-            vm.meal_tipTotal = vm.meal_tipTotal + vm.meal_tip;
+            mealDetail.tipTotal = mealDetail.tipTotal + mealDetail.tip;
             //mealCount = mealCount++
-            vm.meal_count = vm.meal_count + 1;
+            mealDetail.count = mealDetail.count + 1;
             //avgTip = totalTip/mealCount
-            vm.meal_tipAvg = vm.meal_tipTotal / vm.meal_count;
+            mealDetail.tipAvg = mealDetail.tipTotal / mealDetail.count;
+
+            //update the view
+            updateView();
 
             //reset the form
             vm.resetForm();
         };
 
-        vm.resetForm = function () {
+        vm.resetForm = function() {
             vm.meal = {};
             vm.theForm.$setPristine();
         };
 
+    }])
+    .controller('EarningController', ['$rootScope', 'mealDetail', function($rootScope, mealDetail) {
+        var vm = this;
+
+        $rootScope.nav = 'earning'; //set active class on menu
+
+        updateView();
+
         //reset whole app
-        vm.resetApp = function () {
-            vm.meal = {};
-            vm.theForm.$setPristine();
-            vm.mealInit();
-        }
-    });
+        vm.resetApp = function() {
+            mealDetail.subtotal = 0,
+                mealDetail.subtotal = 0,
+                mealDetail.tip = 0,
+                mealDetail.total = 0,
+                mealDetail.tipTotal = 0,
+                mealDetail.count = 0,
+                mealDetail.tipAvg = 0;
+            updateView();
+        };
+
+        function updateView() {
+            vm.meal_tipTotal = mealDetail.tipTotal;
+            vm.meal_count = mealDetail.count;
+            vm.meal_tipAvg = mealDetail.tipAvg;
+        };
+    }])
